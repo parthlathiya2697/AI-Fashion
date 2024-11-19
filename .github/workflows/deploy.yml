@@ -30,7 +30,7 @@ jobs:
           if pm2 list | grep -q "fashion-sense-rating-app"; then
             pm2 stop fashion-sense-rating-app
           fi
-          pm2 start npm --name "fashion-sense-rating-app" -- run start -- -H 0.0.0.0 -p 3000
+          pm2 start npm --name "fashion-sense-rating-app" -- run start -- -H 0.0.0.0 -p 5000
           pm2 save
           EOF
 
@@ -51,7 +51,8 @@ jobs:
       - name: Deploy Backend to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
-          cd Fashion-Sense-Rating
+          cd Cloth-Style-Rating
+          git checkout production
           git pull origin production
           cd backend
           source venv/bin/activate
@@ -62,5 +63,5 @@ jobs:
             pkill -f "manage.py runserver"
           fi
           # Start the server in the background and log output
-          nohup python manage.py runserver 0.0.0.0:8000 > backend.log 2>&1 &
+          nohup python manage.py runserver 0.0.0.0:9000 > backend.log 2>&1 &
           EOF
