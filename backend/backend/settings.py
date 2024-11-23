@@ -134,11 +134,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CORS_ALLOWED_ORIGINS = [
-    f"http://0.0.0.0:{os.environ['FRONTEND_PORT']}",
-    f"http://{os.environ['SERVER_BASE_URL']}:{os.environ['FRONTEND_PORT']}",
-]
-
 # Alternatively, to allow all origins (not recommended for production):
 CORS_ALLOW_ALL_ORIGINS = True
 
