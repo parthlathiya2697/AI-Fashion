@@ -21,7 +21,7 @@ jobs:
       - name: Deploy Frontend to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
-          cd Cloth-Style-Rating
+          cd Fashion-Sense-Rating
           git pull origin production
           cd frontend
           npm install
